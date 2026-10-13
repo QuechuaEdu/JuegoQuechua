@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Feria del Quechua · ¡Juega, aprende y gana!</title>
+  <meta name="description" content="Videojuego educativo para aprender sustantivos y verbos en quechua con juegos de feria.">
+  <meta name="theme-color" content="#2d1b69">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎡%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#app">Saltar al contenido</a>
+
+  <div id="app">
+
+    <!-- ============ 1. PANTALLA DE BIENVENIDA ============ -->
+    <main class="screen active" id="screen-welcome" aria-labelledby="game-title">
+      <div class="scenery" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="hills"></div>
+        <div class="bunting"></div>
+        <div class="bunting second"></div>
+        <div class="lights" data-lights></div>
+        <div class="ferris">
+          <div class="ferris-wheel">
+            <span class="cabin" style="--a:0deg;--c:#e63946"><i></i></span>
+            <span class="cabin" style="--a:45deg;--c:#ffbe0b"><i></i></span>
+            <span class="cabin" style="--a:90deg;--c:#2a9d8f"><i></i></span>
+            <span class="cabin" style="--a:135deg;--c:#ff4d8d"><i></i></span>
+            <span class="cabin" style="--a:180deg;--c:#118ab2"><i></i></span>
+            <span class="cabin" style="--a:225deg;--c:#fb5607"><i></i></span>
+            <span class="cabin" style="--a:270deg;--c:#7b2cbf"><i></i></span>
+            <span class="cabin" style="--a:315deg;--c:#8ac926"><i></i></span>
+            <span class="hub"></span>
+          </div>
+          <div class="ferris-stand"></div>
+        </div>
+        <div class="tent t1"></div>
+        <div class="tent t2"></div>
+        <div class="tent t3"></div>
+        <span class="deco-balloon b1"></span>
+        <span class="deco-balloon b2"></span>
+        <span class="deco-balloon b3"></span>
+        <span class="deco-balloon b4"></span>
+        <div class="ground"></div>
+      </div>
+
+      <div class="welcome-card">
+        <div class="sign">
+          <h1 id="game-title">Feria del Quechua</h1>
+          <p class="tagline">¡Juega, aprende y gana!</p>
+        </div>
+        <p class="subtitle">Aprende sustantivos y verbos en quechua jugando</p>
+
+        <fieldset class="diff-select">
+          <legend>Elige tu dificultad</legend>
+          <div class="seg" role="radiogroup" aria-label="Dificultad">
+            <label><input type="radio" name="difficulty" value="facil" checked><span>🌱 Fácil</span></label>
+            <label><input type="radio" name="difficulty" value="intermedio"><span>🌿 Intermedio</span></label>
+            <label><input type="radio" name="difficulty" value="avanzado"><span>🌳 Avanzado</span></label>
+          </div>
+        </fieldset>
+
+        <div class="btn-row">
+          <button class="btn btn-red btn-big" id="btn-start">🎪 ¡Comenzar la feria!</button>
+          <button class="btn btn-blue btn-big" id="btn-howto">❓ Cómo jugar</button>
+        </div>
+
+        <div class="stats-bar" aria-label="Tu avance">
+          <div class="stat"><span class="stat-ico">⭐</span><b data-stat="score">0</b><small>puntos</small></div>
+          <div class="stat"><span class="stat-ico">🪙</span><b data-stat="coins">0</b><small>monedas</small></div>
+          <div class="stat"><span class="stat-ico">🎟️</span><b data-stat="stars">0</b><small>de 21 estrellas</small></div>
+          <div class="stat wide">
+            <div class="progress" role="progressbar" aria-label="Progreso de la feria" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress>
+              <div class="progress-fill" data-progress-fill></div>
+            </div>
+            <small><b data-stat="done">0</b> de 7 puestos completados</small>
+          </div>
+        </div>
+
+        <div class="mini-actions">
+          <button class="btn btn-ghost btn-small" data-action="toggle-sound" aria-pressed="true">🔊 Sonido</button>
+          <button class="btn btn-ghost btn-small" data-action="reset-data">🗑️ Reiniciar datos</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============ 2. INSTRUCCIONES ============ -->
+    <main class="screen" id="screen-howto" aria-labelledby="howto-title">
+      <div class="panel-page">
+        <h2 id="howto-title">🎟️ Cómo jugar</h2>
+        <div class="howto-grid">
+          <article class="howto-card">
+            <h3>🎯 El objetivo</h3>
+            <p>Recorre los 7 puestos de la feria. En cada uno hay una pregunta sobre <b>sustantivos</b> (nombran seres, lugares y cosas) y <b>verbos</b> (expresan acciones) en quechua. Responde <b>jugando</b>: reventando globos, disparando, lanzando pelotas, pescando…</p>
+          </article>
+          <article class="howto-card">
+            <h3>⭐ Puntos y premios</h3>
+            <ul>
+              <li>Acierto a la primera: <b>100 puntos</b> (menos si usas más oportunidades).</li>
+              <li>Racha de 3 aciertos seguidos: <b>+50 puntos</b>.</li>
+              <li>Cada nivel da hasta <b>3 estrellas</b>: completarlo, acertar el 80 % y no cometer errores.</li>
+              <li>Gana monedas 🪙, insignias 🏅 y, al final, un diploma.</li>
+            </ul>
+          </article>
+          <article class="howto-card">
+            <h3>💚 Los errores no castigan</h3>
+            <p>Cada pregunta te da varias <b>oportunidades</b>. Si fallas, te explicamos la palabra y puedes intentarlo otra vez. Con 3 de 5 aciertos desbloqueas el siguiente puesto, y puedes repetir cualquier puesto para mejorar tu puntaje.</p>
+          </article>
+          <article class="howto-card">
+            <h3>🖱️ Controles</h3>
+            <ul>
+              <li><b>Mouse o pantalla táctil:</b> haz clic o toca los objetos del puesto.</li>
+              <li><b>Teclado:</b> Tab y Enter para elegir. Las teclas <kbd>1</kbd>–<kbd>4</kbd> responden directo (modo accesible), <kbd>P</kbd> o <kbd>Esc</kbd> pausan y <kbd>M</kbd> silencia.</li>
+              <li>Bajo cada juego hay un panel «Responder con botones».</li>
+            </ul>
+          </article>
+          <article class="howto-card wide">
+            <h3>📖 Sobre el quechua de este juego</h3>
+            <p>Usamos el <b>quechua sureño</b> con la escritura de Bolivia (alfabeto de tres vocales). Los verbos se muestran con su terminación de infinitivo separada: <b>taki-y</b> = cantar. Existen variantes regionales (por ejemplo <i>mikhuy</i> / <i>mikuy</i>, <i>tata</i> / <i>tayta</i>, <i>urqu</i> / <i>orqo</i>): cuando es útil, el juego te lo avisa. ¡Tu profesor o profesora puede indicarte la forma de tu comunidad!</p>
+          </article>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-green btn-big" data-go="map">🎪 ¡A la feria!</button>
+          <button class="btn btn-ghost btn-big" data-go="welcome">⬅️ Volver</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============ 3. MAPA / MENÚ DE LA FERIA ============ -->
+    <main class="screen" id="screen-map" aria-labelledby="map-title">
+      <div class="map-top">
+        <button class="btn btn-ghost btn-small" data-go="welcome">⬅️ Inicio</button>
+        <h2 id="map-title">Mapa de la feria</h2>
+        <div class="map-tools">
+          <label class="diff-mini">Dificultad
+            <select id="map-difficulty" aria-label="Dificultad">
+              <option value="facil">🌱 Fácil</option>
+              <option value="intermedio">🌿 Intermedio</option>
+              <option value="avanzado">🌳 Avanzado</option>
+            </select>
+          </label>
+          <button class="btn btn-ghost btn-small" data-action="toggle-sound" aria-pressed="true">🔊</button>
+        </div>
+      </div>
+      <div class="stats-bar slim">
+        <div class="stat"><span class="stat-ico">⭐</span><b data-stat="score">0</b><small>puntos</small></div>
+        <div class="stat"><span class="stat-ico">🪙</span><b data-stat="coins">0</b><small>monedas</small></div>
+        <div class="stat"><span class="stat-ico">🎟️</span><b data-stat="stars">0</b><small>/ 21 estrellas</small></div>
+        <div class="stat wide">
+          <div class="progress" role="progressbar" aria-label="Progreso de la feria" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress>
+            <div class="progress-fill" data-progress-fill></div>
+          </div>
+          <small><b data-stat="done">0</b> de 7 puestos completados</small>
+        </div>
+      </div>
+      <div class="lights map-lights" data-lights aria-hidden="true"></div>
+      <div class="map-grid" id="map-grid"></div>
+      <div class="btn-row map-bottom">
+        <button class="btn btn-yellow" id="btn-results">🏅 Resultados e insignias</button>
+        <button class="btn btn-ghost" data-action="reset-data">🗑️ Reiniciar datos</button>
+      </div>
+    </main>
+
+    <!-- ============ 4–6. PANTALLA DE JUEGO ============ -->
+    <main class="screen" id="screen-game" aria-labelledby="hud-level">
+      <header class="hud">
+        <button class="btn-icon" id="btn-pause" aria-label="Pausar el juego">⏸️</button>
+        <div class="hud-title"><span id="hud-icon" aria-hidden="true">🎈</span><h2 id="hud-level">Nivel</h2></div>
+        <div class="hud-item" title="Puntos"><span aria-hidden="true">⭐</span><b id="hud-score">0</b><span class="sr-only">puntos</span></div>
+        <div class="hud-item" title="Monedas"><span aria-hidden="true">🪙</span><b id="hud-coins">0</b><span class="sr-only">monedas</span></div>
+        <div class="hud-item streak" id="hud-streak" title="Racha de aciertos"><span aria-hidden="true">🔥</span><b id="hud-streak-n">0</b><span class="sr-only">aciertos seguidos</span></div>
+        <div class="hud-item hidden" id="hud-timer" title="Tiempo"><span aria-hidden="true">⏱️</span><b id="hud-time">0:00</b></div>
+        <div class="hud-item chances" id="hud-chances" role="img" aria-label="Oportunidades"></div>
+        <button class="btn-icon" data-action="toggle-sound" aria-label="Activar o silenciar sonido" aria-pressed="true">🔊</button>
+      </header>
+
+      <div class="progress-row">
+        <div class="progress" role="progressbar" aria-label="Progreso del nivel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="level-progress">
+          <div class="progress-fill" id="level-progress-fill"></div>
+        </div>
+        <span id="progress-text">Pregunta 1 de 5</span>
+      </div>
+
+      <section class="question-panel" aria-live="polite">
+        <span class="chip" id="q-cat">Categoría</span>
+        <h3 id="q-text">…</h3>
+        <p id="q-hint" class="q-hint"></p>
+      </section>
+
+      <section id="stage" class="stage" aria-label="Puesto de juego"></section>
+
+      <details class="a11y" id="a11y">
+        <summary>⌨️ Responder con botones (teclado y lectores de pantalla)</summary>
+        <div id="a11y-options" class="a11y-options"></div>
+      </details>
+
+      <div class="toasts" id="toasts" aria-live="polite"></div>
+
+      <section class="feedback hidden" id="feedback" role="status" aria-live="assertive">
+        <div class="fb-icon" id="fb-icon" aria-hidden="true">🎉</div>
+        <div class="fb-body">
+          <h4 id="fb-title">¡Correcto!</h4>
+          <p id="fb-text"></p>
+          <p id="fb-learn" class="fb-learn"></p>
+        </div>
+        <button class="btn btn-green btn-big" id="btn-next">Continuar ➡️</button>
+      </section>
+    </main>
+
+    <!-- ============ 9. RESULTADOS FINALES ============ -->
+    <main class="screen" id="screen-results" aria-labelledby="results-title">
+      <div class="panel-page">
+        <h2 id="results-title">🏅 Resultados de tu feria</h2>
+        <div class="stats-bar">
+          <div class="stat"><span class="stat-ico">⭐</span><b data-stat="score">0</b><small>puntos totales</small></div>
+          <div class="stat"><span class="stat-ico">🪙</span><b data-stat="coins">0</b><small>monedas</small></div>
+          <div class="stat"><span class="stat-ico">🎟️</span><b data-stat="stars">0</b><small>de 21 estrellas</small></div>
+          <div class="stat"><span class="stat-ico">🎪</span><b data-stat="done">0</b><small>de 7 puestos</small></div>
+        </div>
+        <h3>Tus puestos</h3>
+        <div class="table-wrap">
+          <table class="results-table">
+            <thead><tr><th>Puesto</th><th>Estrellas</th><th>Mejor puntaje</th><th>Monedas</th></tr></thead>
+            <tbody id="results-body"></tbody>
+          </table>
+        </div>
+        <h3>Insignias</h3>
+        <div class="badges" id="badges"></div>
+        <div class="btn-row">
+          <button class="btn btn-yellow btn-big" id="btn-diploma">📜 Ver mi diploma</button>
+          <button class="btn btn-green btn-big" data-go="map">🎪 Volver al mapa</button>
+          <button class="btn btn-ghost btn-big" data-go="welcome">🏠 Inicio</button>
+        </div>
+        <p class="note" id="diploma-note"></p>
+      </div>
+    </main>
+
+    <!-- ============ 10. DIPLOMA ============ -->
+    <main class="screen" id="screen-diploma" aria-labelledby="diploma-title">
+      <div class="panel-page">
+        <div class="diploma" id="diploma">
+          <div class="dip-corner tl">🎈</div><div class="dip-corner tr">🎈</div>
+          <div class="dip-corner bl">🎡</div><div class="dip-corner br">🎡</div>
+          <p class="dip-top">Feria del Quechua</p>
+          <h2 id="diploma-title">Diploma de participación</h2>
+          <p>Se otorga con mucho cariño a</p>
+          <p class="dip-name" id="dip-name">Estudiante de quechua</p>
+          <p class="dip-text">por recorrer los siete puestos de la feria y aprender a reconocer <b>sustantivos</b> y <b>verbos</b> en quechua.</p>
+          <p class="dip-stats"><span>⭐ <b data-stat="score">0</b> puntos</span><span>🪙 <b data-stat="coins">0</b> monedas</span><span>🎟️ <b data-stat="stars">0</b> estrellas</span></p>
+          <p class="dip-quechua">¡Sulpayki! <small>(gracias)</small> · ¡Kallpachay! <small>(ánimo)</small></p>
+          <p class="dip-date" id="dip-date"></p>
+        </div>
+        <div class="diploma-form no-print">
+          <label for="student-name">Escribe tu nombre para el diploma</label>
+          <input id="student-name" type="text" maxlength="40" placeholder="Tu nombre" autocomplete="name">
+        </div>
+        <div class="btn-row no-print">
+          <button class="btn btn-blue btn-big" id="btn-print">🖨️ Imprimir o guardar</button>
+          <button class="btn btn-green btn-big" data-go="results">⬅️ Resultados</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ============ VENTANA MODAL (introducción, pausa, nivel completado, confirmaciones) ============ -->
+  <dialog id="modal" class="modal" aria-labelledby="modal-title"></dialog>
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
+
+  <noscript><p style="padding:2rem;font:1.2rem sans-serif">Este juego necesita JavaScript activado para funcionar.</p></noscript>
+  <script src="script.js"></script>
+</body>
+</html>
